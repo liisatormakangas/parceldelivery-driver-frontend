@@ -1,13 +1,15 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import LockerList from './components/lockerList'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 
 export default function Home() {
   
   return (
-    <main>
+     <main>
+      <Header />
       <LockerList />
+      <Footer />
     </main>
   )
 }
