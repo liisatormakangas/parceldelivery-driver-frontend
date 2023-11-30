@@ -10,6 +10,8 @@ interface DataContextType {
     freeCabinets: any;
     collectCabients: any;
     occupiedCabients: any;
+    selectedParcel: any;
+    setSelectedParcel: any;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -17,6 +19,7 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 const DataContextProvider = (props: any) => {
     const [ cabinets, setCabinets ] = useState<any>([]);
     const [ transportParcels, setTransportParcels ] = useState<any>([]);
+    const [ selectedParcel, setSelectedParcel ] = useState<any>({});
     const { selectedLocker } = useLockerContext() as any;
     
 
@@ -45,7 +48,9 @@ const DataContextProvider = (props: any) => {
         transportParcels,
         freeCabinets,
         collectCabients,
-        occupiedCabients
+        occupiedCabients,
+        selectedParcel,
+        setSelectedParcel
     };
     return (
         <DataContext.Provider value={value}>

@@ -9,10 +9,13 @@ const LockerContext = createContext<LockerContextType | undefined>(undefined);
 
 const LockerContextProvider = (props: any) => {
     const [ selectedLocker, setSelectedLocker ] = useState<number>(0);
+    const [ selectedCabinet, setSelectedCabinet ] = useState<number>(0);
 
     const value = {
         selectedLocker,
-        setSelectedLocker
+        setSelectedLocker,
+        selectedCabinet,
+        setSelectedCabinet
     };
     return (
         <LockerContext.Provider value={value}>

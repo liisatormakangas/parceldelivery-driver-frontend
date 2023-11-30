@@ -9,10 +9,12 @@ interface CabinetType {
 };
 interface CabinetContextType {
     freeCabinets: CabinetType[];
+    occupiedCabients: CabinetType[];
 };
 
 const FreeCabinets = () => {
-    const { freeCabinets } = useDataContext() as CabinetContextType;
+    const { freeCabinets, occupiedCabients } = useDataContext() as CabinetContextType;
+
 
     const cabinetList = freeCabinets.map((cabinet: any) => {
         return (
