@@ -6,10 +6,7 @@ import { useLockerContext } from './lockerContext';
 
 interface DataContextType {
     cabinets: any;
-    transportParcels: any;
-    freeCabinets: any;
-    collectCabients: any;
-    occupiedCabients: any;
+    transportParcels: any; 
     selectedParcel: any;
     setSelectedParcel: any;
 }
@@ -38,17 +35,10 @@ const DataContextProvider = (props: any) => {
         };
         fetchParcels();
     }, [selectedLocker]);
-
-    const freeCabinets = cabinets.filter((item: any) => item.cabinet_status === 'free');
-    const collectCabients = cabinets.filter((item: any) => item.cabinet_status === 'has_dropoff_parcel');
-    const occupiedCabients = cabinets.filter((item: any) => item.cabinet_status === 'has_pickup_parcel');
-
+    
     const value = {
         cabinets,
         transportParcels,
-        freeCabinets,
-        collectCabients,
-        occupiedCabients,
         selectedParcel,
         setSelectedParcel
     };

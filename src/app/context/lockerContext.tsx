@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react';
 
 interface LockerContextType {
     selectedLocker: number;
+    selectedCabinet: number;
 }
 
 const LockerContext = createContext<LockerContextType | undefined>(undefined);

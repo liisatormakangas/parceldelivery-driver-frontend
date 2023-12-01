@@ -1,20 +1,43 @@
 'use client';
-import React from "react";
-import { useDataContext } from "../context/dataContext";
+import React, { useEffect, useState } from "react";
+import { useLockerContext } from "../context/lockerContext";
+import { getCabinets } from '../context/apiRequests';
 
 
 interface CabinetType {
     id_cabinet: number;
+    cabinet_number: number;
+    locker_number: number;
     cabinet_status: string;
+    parcel_id: number;
 };
-interface CabinetContextType {
-    freeCabinets: CabinetType[];
-    occupiedCabients: CabinetType[];
+interface LockerContextType {
+    selectedLocker: number;
+    selectedCabinet: number;
 };
 
 const FreeAndOccupCabinets = () => {
-    const { freeCabinets, occupiedCabients } = useDataContext() as CabinetContextType;
+    const { selectedLocker} = useLockerContext() as LockerContextType;
+    const [freeCabinets, setFreeCabinets] = useState([]);
+    const [occupiedCabients, setOccupiedCabients] = useState([]);
 
+    useEffect(() => {
+        const cabinets = async () => {
+            const response = await getCabinets(selectedLocker);
+            setFreeCabinets(response.filter((item: CabinetType) => item.cabinet_status === 'free'));
+        };
+        cabinets();
+    }   
+    , []);
+
+    useEffect(() => {
+        const cabinets = async () => {
+            const response = await getCabinets(selectedLocker);
+            setOccupiedCabients(response.filter((item: CabinetType) => item.cabinet_status === 'has_pickup_parcel'));
+        };
+        cabinets();
+    }   
+    , []);
 
     return (
         <>

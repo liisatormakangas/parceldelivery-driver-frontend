@@ -5,16 +5,15 @@ import { lockerLocations } from "../components/lockerLocations";
 
 interface LockerContextType {
     selectedLocker: number;
+    selectedCabinet: number;
 }
-const LockerName = (props: any) => {
-    const num = props.locker
-    console.log("lockerName  " + num)
+const LockerName = () => {
     const { selectedLocker } = useLockerContext() as LockerContextType;
 
     return (
         <div className="mb-4 mt-10">
-            <h2 className="text-2xl font-bold">Locker {num}</h2>
-            {lockerLocations(num)}
+            <h2 className="text-2xl font-bold">Locker {selectedLocker}</h2>
+            {lockerLocations(selectedLocker)}
         </div>
     )
 };

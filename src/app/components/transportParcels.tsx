@@ -1,17 +1,33 @@
 'use client'
-import React from "react";
-import { useDataContext } from "../context/dataContext";
+import React, { useState, useEffect } from "react";
+import { useLockerContext } from "../context/lockerContext";
+import { getCabinets, getParcels } from '../context/apiRequests';
 
-interface ParcelType {
+
+interface CabinetType {
+    id_cabinet: number;
+    cabinet_number: number;
+    locker_number: number;
+    cabinet_status: string;
     parcel_id: number;
-    parcel_status: string;
-}
-interface ParcelContextType {   
-    transportParcels: ParcelType[];
-}
+};
+interface LockerContextType {
+    selectedLocker: number;
+    selectedCabinet: number;
+};
 
 const TransportParcels = () => {
-    const { transportParcels } = useDataContext() as ParcelContextType;
+    const { selectedLocker} = useLockerContext() as LockerContextType;
+    const [transportParcels, setTransportParcels] =useState([]);
+
+    useEffect(() => {
+        const parcels = async () => {
+            const response = await getParcels(selectedLocker);
+            setTransportParcels(response);
+        };
+        parcels();
+    }, []);
+
 
     return (
         <div>

@@ -1,6 +1,4 @@
-'use client'
 import Link from "next/link";
-import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LockerName from "../components/lockerName";
@@ -11,21 +9,17 @@ import AvailableCabients from "../components/availableCabinets";
 
 
 const LockerDetails = () => {
-    // use locker number from query http://localhost:3000/lockerDetails?lockerNumber=2
-    
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
 
-    
-    // Get the value of the 'lockerNumber' parameter
-    const lockerNumber = urlParams.get('lockerNumber');
-    console.log("details  " + lockerNumber)
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const lockerNumber = urlParams.get('lockerNumber');
+    //console.log("details  " + lockerNumber)
 
     return (
         <div>
             <Header />
             <div className="ml-7 mr-10">
-                <LockerName locker={lockerNumber}/>
+                <LockerName />
                 <div className="flex">
                     <div className="w-3/5 pr-20">
                         <div className="font-bold mb-3 mt-3">
