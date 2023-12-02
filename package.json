@@ -11,6 +11,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "leaflet": "^1.9.4",
+    "local-storage": "^2.0.0",
     "next": "^14.0.3",
     "react": "^18",
     "react-dom": "^18"

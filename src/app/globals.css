@@ -24,3 +24,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+.selected-row {
+  background-color: #f7f7d4;
+  font-weight: bold;
+}

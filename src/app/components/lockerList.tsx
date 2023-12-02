@@ -37,7 +37,7 @@ const LockerList = () => {
         "Prisma Linnanmaa",
         "K-Market Kaijonharju",
         "Lidl Tuira",
-        "Lidl Pataäniemi",
+        "Lidl Pateniemi",
         "Prisma Raksila",
       ];
 
