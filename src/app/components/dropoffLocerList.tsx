@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import { useLockerContext } from "../context/lockerContext";
-import { getParcels, modifyAfterDriverDropoff, getCabinets, getFreeLockers } from "../context/apiRequests";
+import { getParcels, getCabinets, getFreeLockers } from "../context/apiRequests";
 import '../globals.css';
 
 interface LockerContextType {
@@ -34,12 +34,50 @@ const DropoffLockers = () => {
     const [showAvailableLockers, setShowAvailableLockers] = useState(false);
     const [freeLockers, setFreeLockers] = useState<CabinetType[]>([]);
     const [selectedLockerNumber, setSelectedLockerNumber] = useState<number | null>(null);
+
+    const handleConfirm = async () => {
+      if (selectedParcelId !==0 && selectedLockerNumber !==0) {
+        try {
+          const requestLocker = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_parcel: selectedParcelId, pickup_locker: selectedLockerNumber })
+          };
+          const response = await fetch(`http://localhost:3001/parcel/updateParcelWithNewLocker`, requestLocker);
+          const data:any = await response.json();
+          alert(data.message);
+          
+        } catch (error:any) {
+          console.error("Error updating pickup locker:", error.message);
+        }
+      }
+    };
+    const handleCabinetDoor = async (e: any) => {
+      if (selectedParcelId !==0 && selectedCabinetId !==0) {
+        try {
+          const requestCabinet = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_cabinet: selectedCabinetId, id_parcel: selectedParcelId })
+          };
+          const response = await fetch(`http://localhost:3001/parcel/modifyAfterDriverDropoff`, requestCabinet);
+          const data:any = await response.json();
+          alert(data.message);
+
+          }
+        catch (error:any) {
+          console.error("Error updating cabinet:", error.message);
+
+        }
+      }
+    };
   
     useEffect(() => {
       const fetchParcelsAndCabinets = async () => {
         try {
           const parcelData = await getParcels(selectedLocker);
           setSelectedParcel(parcelData);
+          console.log("Parcels:", parcelData);
   
           const cabinetData = await getCabinets(selectedLocker);
           setFreeCabinets(cabinetData.filter((item: CabinetType) => item.cabinet_status === 'free'));
@@ -51,26 +89,31 @@ const DropoffLockers = () => {
         }
       };
       fetchParcelsAndCabinets();
-    }, [selectedLocker]);
+    }, []);
   
-    const cabinetList = freeCabinets.map((cabinet: CabinetType) => {
-      const isSelected = cabinet.id_cabinet === selectedCabinetId;
-  
-      return (
-        <div
-          key={cabinet.id_cabinet}
-          onClick={(e: any) => {
-            e.preventDefault();
-            setSelectedCabinetId(cabinet.id_cabinet);
-            setSelectedCabinet(cabinet.cabinet_number);
-            console.log(`Selected Cabinet number: ${cabinet.cabinet_number}`);
-          }}
-          className={`grid grid-cols-2 pt-2 pb-2 pl-2 ${isSelected ? 'selected-row' : ''}`}
-        >
-          <h5>L{cabinet.locker_number}: cabinet {cabinet.cabinet_number}</h5>
-        </div>
-      );
-    });
+    const cabinetList = (
+      <div className="grid grid-cols-3 gap-4">
+        {freeCabinets.map((cabinet: CabinetType) => {
+          const isSelected = cabinet.id_cabinet === selectedCabinetId;
+    
+          return (
+            <div
+              key={cabinet.id_cabinet}
+              onClick={(e: any) => {
+                e.preventDefault();
+                setSelectedCabinetId(cabinet.id_cabinet);
+                setSelectedCabinet(cabinet.cabinet_number);
+                console.log(`Selected Cabinet number: ${cabinet.cabinet_number}`);
+              }}
+              className={`pt-2 pb-2 pl-2 ${isSelected ? 'selected-row' : ''}`}
+            >
+              <h5>L{cabinet.locker_number}: cabinet {cabinet.cabinet_number}</h5>
+            </div>
+          );
+        })}
+      </div>
+    );
+    
   
     const lockerList = freeLockers.map((cabinet: CabinetType) => {
         const isSelected = cabinet.locker_number === selectedLockerNumber;
@@ -122,13 +165,25 @@ const DropoffLockers = () => {
         </div>
         {showAvailableCabinets && (
           <div className="w-1/2 mb-4 pl-5">
-            <h4 className="font-bold mb-4">{showAvailableLockers ? "No available cabinets. Select an alternative locker" : "Select a cabinet"}</h4>
-            {showAvailableLockers ? lockerList : cabinetList}
-          </div>
-        )}
+            <h4 className="font-bold mb-4">
+              {showAvailableLockers
+                ? "No available cabinets. Select an alternative locker"
+                : "Select a cabinet"}
+            </h4>
+          {showAvailableLockers ? lockerList : cabinetList}
+
+            {(selectedLockerNumber || selectedCabinetId) && (
+                <button
+                  onClick={showAvailableLockers ? handleConfirm : handleCabinetDoor}
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  {showAvailableLockers ? "Confirm" : "Proceed"}
+                </button>
+      )}
+      </div>
+    )}
       </>
     );
   };
   
   export default DropoffLockers;
-  

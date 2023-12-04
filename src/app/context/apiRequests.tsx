@@ -31,18 +31,7 @@ export const modifyParcelToTransport = async (parcelId: number) => {
     const data = await response.json();
     return data;
 };
-export const modifyAfterDriverDropoff = async (parcelId:number, selectedCabinet:number) => {
-    const response = await fetch(`${url}/parcel/modifyAfterDriverDropoff`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id_parcel: parcelId, id_cabinet: selectedCabinet })
-    });
-    if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-};
+
 export const getFreeLockers = async () => {
     const response = await fetch(`${url}/cabinet/freeLockers`);
     if (!response.ok) {
@@ -51,15 +40,3 @@ export const getFreeLockers = async () => {
     const data = await response.json();
     return data;
 };
-export const updatePickupLocker = async (parcelId: number, selectedLocker: number) => {
-    const response = await fetch(`${url}/parcel/updateParcelWithNewLocker`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id_parcel: parcelId, pickup_locker: selectedLocker })
-    });
-    if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-}
