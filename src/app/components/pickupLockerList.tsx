@@ -134,4 +134,3 @@ const PickupLockers = () => {
 };
 
 export default PickupLockers;
-

@@ -40,7 +40,8 @@ const DataContextProvider = (props: any) => {
         cabinets,
         transportParcels,
         selectedParcel,
-        setSelectedParcel
+        setSelectedParcel,
+        setTransportParcels
     };
     return (
         <DataContext.Provider value={value}>
@@ -58,5 +59,3 @@ export const useDataContext = () => {
 }
 
 export default DataContextProvider;
-
-
