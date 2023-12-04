@@ -13,13 +13,13 @@
     "leaflet": "^1.9.4",
     "local-storage": "^2.0.0",
     "next": "^14.0.3",
-    "react": "^18",
+    "react": "^18.2.0",
     "react-dom": "^18"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.8",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.2.41",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
