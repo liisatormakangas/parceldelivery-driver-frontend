@@ -6,6 +6,7 @@ import CollectCabients from "../components/collectCabinets";
 import TransportParcels from "../components/transportParcels";
 import FreeAndOccupCabinets from "../components/freeAndOccupCabinets";
 import AvailableCabients from "../components/availableCabinets";
+import Navigation from "../components/navigation";
 
 
 const LockerDetails = () => {
@@ -18,6 +19,8 @@ const LockerDetails = () => {
     return (
         <div>
             <Header />
+            <div className=" p-10 border-solid border-2">
+            <Navigation />
             <div className="ml-7 mr-10">
                 <LockerName />
                 <div className="flex">
@@ -53,8 +56,9 @@ const LockerDetails = () => {
                     </div>
                 </div>
                 <div className="mt-20 mb-10 text-center">
-                    <Link href="/" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Back to Locker List</Link>
+                    <Link href="/" className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Back to Locker List</Link>
                 </div>
+            </div>
             </div>
             <Footer />
         </div>

@@ -16,7 +16,6 @@ export const getParcels = async (lockerNumber: number) => {
         throw new Error(`Error: ${response.status}`);
     }
     const data = await response.json();
-    console.log("Parcels:", data);
     return data;
 };
 export const modifyParcelToTransport = async (parcelId: number) => {
