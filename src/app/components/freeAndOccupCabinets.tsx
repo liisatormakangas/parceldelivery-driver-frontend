@@ -28,7 +28,7 @@ const FreeAndOccupCabinets = () => {
         };
         cabinets();
     }   
-    , []);
+    , [selectedLocker]);
 
     useEffect(() => {
         const cabinets = async () => {
@@ -37,7 +37,7 @@ const FreeAndOccupCabinets = () => {
         };
         cabinets();
     }   
-    , []);
+    , [selectedLocker]);
 
     return (
         <>

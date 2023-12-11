@@ -28,7 +28,7 @@ const CollectCabients = () => {
         };
         cabinets();
     }   
-    , []);
+    , [selectedLocker]);
 
     return (
         <div>

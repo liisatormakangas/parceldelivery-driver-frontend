@@ -11,11 +11,6 @@ import Navigation from "../components/navigation";
 
 const LockerDetails = () => {
 
-    // const queryString = window.location.search;
-    // const urlParams = new URLSearchParams(queryString);
-    // const lockerNumber = urlParams.get('lockerNumber');
-    //console.log("details  " + lockerNumber)
-
     return (
         <div>
             <Header />
