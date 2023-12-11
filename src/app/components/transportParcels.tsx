@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from "react";
 import { useLockerContext } from "../context/lockerContext";
-import { getCabinets, getParcels } from '../context/apiRequests';
+import { getParcels } from '../context/apiRequests';
 
 
 interface CabinetType {
@@ -26,7 +26,7 @@ const TransportParcels = () => {
             setTransportParcels(response);
         };
         parcels();
-    }, []);
+    }, [selectedLocker]);
 
 
     return (

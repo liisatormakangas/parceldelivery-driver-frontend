@@ -29,7 +29,7 @@ const AvailableCabients = () => {
             setCollectCabients(response.filter((item: CabinetType) => item.cabinet_status === 'has_dropoff_parcel'));
         };
         cabinets();
-    }, []);
+    }, [selectedLocker]);
 
     useEffect(() => {
         const parcels = async () => {
@@ -37,7 +37,7 @@ const AvailableCabients = () => {
             setTransportParcels(response);
         };
         parcels();
-    }, []);
+    }, [selectedLocker]);
    
     const availableCabients = freeCabinets.length + collectCabients.length;
 

@@ -41,7 +41,7 @@ const PickupLockers = () => {
         };
         cabinets();
     }
-        , []);
+        , [selectedLocker]);
 
     const handleListElement = (e: any, cabinetId: number, parcelId: number) => {
         e.preventDefault();
@@ -93,10 +93,6 @@ const PickupLockers = () => {
             setSelectedParcel(0);
             setButtonText('Close cabinet');
 
-
-            if (typeof window !== 'undefined' && window.localStorage) {
-                localStorage.setItem('collectCabients', JSON.stringify(updatedCabients));
-            }
         } else {
             alert('Please select a cabinet');
         }
