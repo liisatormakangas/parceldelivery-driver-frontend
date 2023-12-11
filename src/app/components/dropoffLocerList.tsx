@@ -63,7 +63,7 @@ const DropoffLockers = () => {
           const requestCabinet = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ parcelId: selectedParcelId,selectedCabinet: selectedCabinetId,  }),
+            body: JSON.stringify({ parcelId: selectedParcelId, selectedCabinet: selectedCabinetId}),
           };
     
           const response = await fetch(`http://localhost:3001/parcel/modifyAfterDriverDropoff`, requestCabinet);
