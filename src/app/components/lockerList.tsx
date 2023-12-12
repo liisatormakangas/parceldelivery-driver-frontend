@@ -42,7 +42,7 @@ const LockerList = () => {
       ];
 
     return (
-        <div className="p-10 border-solid border-2" style={{ boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}>
+        <div className="p-5 border-solid border-2" style={{ boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}>
             <div>
                 <h1 className="text-3xl">{greeting} !</h1>
             </div>
